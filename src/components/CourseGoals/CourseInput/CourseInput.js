@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 
 import Button from "../../UI/Button/Button";
-import "./CourseInput.css";
+import styles from "./CourseInput.module.css";
 
 /*& label : styled-components에게 div안에 있는 레이블에 대해 얘기하고 있어라고 선언하는 것!  */
+/*
 const FormControl = styled.div`
   margin: 0.5rem 0;
 
@@ -31,6 +31,7 @@ const FormControl = styled.div`
     border-color: #8b005d;
   }
 `;
+*/
 
 const CourseInput = (props) => {
   const [enteredValue, setEnteredValue] = useState("");
@@ -54,11 +55,13 @@ const CourseInput = (props) => {
 
   return (
     <form onSubmit={formSubmitHandler}>
-      <FormControl invalid={!isValid}>
+      <div
+        className={`${styles["form-control"]} ${!isValid && styles.invalid}`}
+      >
         {/*백틱 사이에 입력하면 일반 문자열로 취급*/}
         <label>Course Goal</label>
         <input type="text" onChange={goalInputChangeHandler} />
-      </FormControl>
+      </div>
       <Button type="submit">Add Goal</Button>
     </form>
   );
